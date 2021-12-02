@@ -29,6 +29,12 @@ namespace FifthLab
             {
                 greenCircles[i] = new GreenCircle(0, 0, 0);
                 greenCircles[i].SetRandomPoint(pbMain.Width, pbMain.Height);
+                greenCircles[i].OnTimerEnd += (c) =>
+                {
+                    c.SetRandomPoint(pbMain.Width, pbMain.Height);
+                    c.Timer = 100;
+                };
+
                 objects.Add(greenCircles[i]);
             }
 
@@ -98,12 +104,7 @@ namespace FifthLab
                 if (obj is GreenCircle)
                 {
                     var circle = (GreenCircle)obj;
-                    circle.Timer--;
-                    if (circle.Timer == 0)
-                    {
-                        circle.SetRandomPoint(pbMain.Width, pbMain.Height);
-                        circle.Timer = 100;
-                    }
+                    circle.DecreaceTimer();
                     g.DrawString(
                         circle.Timer.ToString(),
                         new Font("Verdana", 8),

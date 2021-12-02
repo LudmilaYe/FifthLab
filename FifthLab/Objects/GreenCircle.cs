@@ -10,6 +10,8 @@ namespace FifthLab.Objects
 {
     class GreenCircle : BaseObject
     {
+        public Action<GreenCircle>? OnTimerEnd;
+
         public int Timer;
         //Конструктор
         public GreenCircle(float x, float y, float angle) : base(x, y, angle) 
@@ -29,6 +31,16 @@ namespace FifthLab.Objects
             var path = base.GetGraphicsPath();
             path.AddEllipse(-15, -15, 30, 30);
             return path;
+        }
+
+        //Вычитание 1 у таймера
+        public void DecreaceTimer()
+        {
+            Timer--; 
+            if (Timer == 0)
+            {
+                OnTimerEnd?.Invoke(this);
+            }
         }
     }
 }
