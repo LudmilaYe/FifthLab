@@ -45,6 +45,7 @@ namespace FifthLab
             {
                 player.score++;
                 c.SetRandomPoint(pbMain.Width, pbMain.Height);
+                c.Timer = 100;
             };
 
             objects.Add(player);
@@ -94,6 +95,22 @@ namespace FifthLab
             foreach (var obj in objects)
             {
                 g.Transform = obj.GetTransform();
+                if (obj is GreenCircle)
+                {
+                    var circle = (GreenCircle)obj;
+                    circle.Timer--;
+                    if (circle.Timer == 0)
+                    {
+                        circle.SetRandomPoint(pbMain.Width, pbMain.Height);
+                        circle.Timer = 100;
+                    }
+                    g.DrawString(
+                        circle.Timer.ToString(),
+                        new Font("Verdana", 8),
+                        new SolidBrush(Color.Green),
+                        10, 10
+                    );
+                }
                 obj.Render(g);
             }
 

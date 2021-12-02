@@ -10,8 +10,12 @@ namespace FifthLab.Objects
 {
     class GreenCircle : BaseObject
     {
+        public int Timer;
         //Конструктор
-        public GreenCircle(float x, float y, float angle) : base(x, y, angle) { }
+        public GreenCircle(float x, float y, float angle) : base(x, y, angle) 
+        {
+            Timer = 100;
+        }
 
         //Отрисовка объекта
         public override void Render(Graphics g)
