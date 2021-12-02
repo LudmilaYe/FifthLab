@@ -43,11 +43,14 @@
             this.pbMain.Size = new System.Drawing.Size(714, 471);
             this.pbMain.TabIndex = 0;
             this.pbMain.TabStop = false;
+            this.pbMain.Paint += new System.Windows.Forms.PaintEventHandler(this.pbMain_Paint);
+            this.pbMain.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pbMain_MouseClick);
             // 
             // timer
             // 
             this.timer.Enabled = true;
             this.timer.Interval = 30;
+            this.timer.Tick += new System.EventHandler(this.timer_Tick);
             // 
             // txtLog
             // 
