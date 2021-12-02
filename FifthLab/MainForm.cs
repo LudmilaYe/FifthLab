@@ -16,12 +16,21 @@ namespace FifthLab
         List<BaseObject> objects = new();
         Player player;
         Marker? marker;
+        GreenCircle[] greenCircles;
 
         public MainForm()
         {
             InitializeComponent();
 
+            greenCircles = new GreenCircle[2];
             player = new Player(pbMain.Width / 2, pbMain.Height / 2, 0);
+
+            for (int i = 0; i < greenCircles.Length; i++)
+            {
+                greenCircles[i] = new GreenCircle(0, 0, 0);
+                greenCircles[i].SetRandomPoint(pbMain.Width, pbMain.Height);
+                objects.Add(greenCircles[i]);
+            }
 
             player.OnOverlap += (p, obj) =>
             {
@@ -31,6 +40,11 @@ namespace FifthLab
             {
                 objects.Remove(m);
                 marker = null;
+            };
+            player.OnGreenCircleOverlap += (c) =>
+            {
+                player.score++;
+                c.SetRandomPoint(pbMain.Width, pbMain.Height);
             };
 
             objects.Add(player);
@@ -82,6 +96,8 @@ namespace FifthLab
                 g.Transform = obj.GetTransform();
                 obj.Render(g);
             }
+
+            lblScore.Text = $"Счёт: {player.score}";
         }
 
         //Тик таймера

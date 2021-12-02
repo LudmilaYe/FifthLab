@@ -11,7 +11,9 @@ namespace FifthLab.Objects
     class Player : BaseObject
     {
         public Action<Marker>? OnMarkerOverlap;
+        public Action<GreenCircle>? OnGreenCircleOverlap;
         public float vX, vY;
+        public int score = 0;
 
         //Конструктор
         public Player(float x, float y, float angle) : base(x, y, angle) { }
@@ -24,7 +26,7 @@ namespace FifthLab.Objects
             g.DrawLine(new Pen(Color.Black, 2), 0, 0, 25, 0);
         }
 
-        //Получение пути к графике у объекта
+        //Получение пути объекту
         public override GraphicsPath GetGraphicsPath()
         {
             var path = base.GetGraphicsPath();
@@ -40,6 +42,10 @@ namespace FifthLab.Objects
             if (obj is Marker)
             {
                 OnMarkerOverlap?.Invoke((Marker)obj);
+            }
+            if (obj is GreenCircle)
+            {
+                OnGreenCircleOverlap?.Invoke((GreenCircle)obj);
             }
         }
     }
