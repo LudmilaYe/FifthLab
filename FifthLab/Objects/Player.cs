@@ -13,7 +13,7 @@ namespace FifthLab.Objects
         public Action<Marker>? OnMarkerOverlap;
         public Action<GreenCircle>? OnGreenCircleOverlap;
         public float vX, vY;
-        public int score = 0;
+        public int Score = 0;
 
         //Конструктор
         public Player(float x, float y, float angle) : base(x, y, angle) { }

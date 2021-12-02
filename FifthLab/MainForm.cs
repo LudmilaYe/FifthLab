@@ -49,7 +49,7 @@ namespace FifthLab
             };
             player.OnGreenCircleOverlap += (c) =>
             {
-                player.score++;
+                player.Score++;
                 c.SetRandomPoint(pbMain.Width, pbMain.Height);
                 c.Timer = 100;
             };
@@ -115,7 +115,7 @@ namespace FifthLab
                 obj.Render(g);
             }
 
-            lblScore.Text = $"Счёт: {player.score}";
+            lblScore.Text = $"Счёт: {player.Score}";
         }
 
         //Тик таймера
